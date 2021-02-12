@@ -44,6 +44,7 @@ bool Pathfinder::importMaze(std::string file_name) {
             y = mazePos/GRID_SIZE-1 (int version)
             z = mazePos%(GRID_SIZE-1^2)
             */
+                std::cout << "current mazePos: " << mazePos << std::endl;
                 std::cout << "now reading to position: (" << mazePos%MAZE_SIZE << ", " << (mazePos/MAZE_SIZE)%MAZE_SIZE << ", " << (mazePos/int(std::pow(MAZE_SIZE, 2)))%MAZE_SIZE << ")" << std::endl; 
                 std::cout << "\t which is: " << intBuffer << std::endl;
                 result[mazePos%MAZE_SIZE][(mazePos/MAZE_SIZE)%MAZE_SIZE][(mazePos/int(std::pow(MAZE_SIZE, 2)))%MAZE_SIZE] = intBuffer;
@@ -52,7 +53,8 @@ bool Pathfinder::importMaze(std::string file_name) {
         }
 	}else{
 		std::cerr << "There was an error reading file, " << file_name << std::endl;
-	}
+        return false;
+    }
 
     if(result[0][0][0] != 1 || result[MAZE_SIZE-1][MAZE_SIZE-1][MAZE_SIZE-1] != 1){
         return false;
