@@ -27,12 +27,14 @@ std::string Pathfinder::toString() const {
 }
 
 bool Pathfinder::importMaze(std::string file_name) {
+    std::cout << "Hello Big BOI" << std::endl;
     int result[MAZE_SIZE][MAZE_SIZE][MAZE_SIZE];
     std::string buffer;
 	std::ifstream in(file_name);
 
     int mazePos = 0;
 	if(in.is_open()){
+        std::cout << "hELLO big boi" << std::endl;
         while(std::getline(in, buffer)){
             if(mazePos > 124) // if there are more than 125 entries
                 return false;
@@ -59,7 +61,7 @@ bool Pathfinder::importMaze(std::string file_name) {
             maze[i%(MAZE_SIZE-1)][i/(MAZE_SIZE-1)][i%(int(std::pow(MAZE_SIZE-1, 2)))] = result[i%(MAZE_SIZE-1)][i/(MAZE_SIZE-1)][i%(int(std::pow(MAZE_SIZE-1, 2)))];
         }
     }
-
+    return true;
 }
 
 void Pathfinder::createRandomMaze() {
@@ -101,7 +103,7 @@ bool Pathfinder::findPath(int x, int y, int z){
     maze[x][y][z] = ON_PATH; 
 }
 
-std::string formatCoords(int x, int y, int z){
+std::string Pathfinder::formatCoords(int x, int y, int z){
     ostringstream os;
     os << "(" << x << ", " << y << ", " << z << ")";
     return os.str();

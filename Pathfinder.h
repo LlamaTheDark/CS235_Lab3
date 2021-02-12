@@ -22,7 +22,7 @@ private:
     string formatCoords(int x, int y, int z);
 
 public:
-	Pathfinder() {}
+	Pathfinder();
 	virtual ~Pathfinder() {}
 
 	//Part 1-----------------------------------------------------------------------------------
