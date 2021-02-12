@@ -27,6 +27,8 @@ std::string Pathfinder::toString() const {
 }
 
 bool Pathfinder::importMaze(std::string file_name) {
+    std::cout << "CURRENTLY READING FILE: " << file_name << std::endl;
+
     int result[MAZE_SIZE][MAZE_SIZE][MAZE_SIZE];
     std::string buffer;
 	std::ifstream in(file_name);
