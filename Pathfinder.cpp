@@ -38,17 +38,18 @@ bool Pathfinder::importMaze(std::string file_name) {
         while(std::getline(in, buffer)){
             if(mazePos > 124) // if there are more than 125 entries
                 return false;
-            istringstream intBuffer(buffer);
+            istringstream iss(buffer);
+            std::string intBuffer;
+            while(iss >> intBuffer){
             /*
             x = mazePos%GRID_SIZE-1
             y = mazePos/GRID_SIZE-1 (int version)
             z = mazePos%(GRID_SIZE-1^2)
             */
-           
-            std::cout << "now reading to position: (" << mazePos%MAZE_SIZE << ", " << (mazePos/MAZE_SIZE)%MAZE_SIZE << ", " << (mazePos/int(std::pow(MAZE_SIZE, 2)))%MAZE_SIZE << ")" << std::endl; 
-            intBuffer >> result[mazePos%MAZE_SIZE][(mazePos/MAZE_SIZE)%MAZE_SIZE][(mazePos/int(std::pow(MAZE_SIZE, 2)))%MAZE_SIZE];
-            std::cout << "\tWich is: " << result[mazePos%MAZE_SIZE][(mazePos/MAZE_SIZE)%MAZE_SIZE][(mazePos/int(std::pow(MAZE_SIZE, 2)))%MAZE_SIZE] << std::endl;
-            mazePos++;
+                std::cout << "now reading to position: (" << mazePos%MAZE_SIZE << ", " << (mazePos/MAZE_SIZE)%MAZE_SIZE << ", " << (mazePos/int(std::pow(MAZE_SIZE, 2)))%MAZE_SIZE << ")" << std::endl; 
+                result[mazePos%MAZE_SIZE][(mazePos/MAZE_SIZE)%MAZE_SIZE][(mazePos/int(std::pow(MAZE_SIZE, 2)))%MAZE_SIZE] = intBuffer;
+                mazePos++;
+            }
         }
 	}else{
 		std::cerr << "There was an error reading file, " << file_name << std::endl;
