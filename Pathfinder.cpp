@@ -45,7 +45,7 @@ bool Pathfinder::importMaze(std::string file_name) {
             z = mazePos%(GRID_SIZE-1^2)
             */
                 std::cout << "now reading to position: (" << mazePos%MAZE_SIZE << ", " << (mazePos/MAZE_SIZE)%MAZE_SIZE << ", " << (mazePos/int(std::pow(MAZE_SIZE, 2)))%MAZE_SIZE << ")" << std::endl; 
-                std::cout << "\t which is: " << intBuffer;
+                std::cout << "\t which is: " << intBuffer << std::endl;
                 result[mazePos%MAZE_SIZE][(mazePos/MAZE_SIZE)%MAZE_SIZE][(mazePos/int(std::pow(MAZE_SIZE, 2)))%MAZE_SIZE] = intBuffer;
                 mazePos++;
             }
