@@ -7,7 +7,7 @@
 
 Pathfinder::Pathfinder(){
     for(int i = 0; i < 125; i++){
-        maze[i%(MAZE_SIZE-1)][i/(MAZE_SIZE-1)][i%(int(std::pow(MAZE_SIZE-1, 2)))] = FREE;
+        maze[i%MAZE_SIZE][(i/MAZE_SIZE)%MAZE_SIZE][(i/int(std::pow(MAZE_SIZE, 2)))%MAZE_SIZE] = FREE;
     }
 }
 
@@ -47,7 +47,7 @@ bool Pathfinder::importMaze(std::string file_name) {
            
             std::cout << "now reading to position: (" << mazePos%(MAZE_SIZE-1) << ", " << mazePos/(MAZE_SIZE-1) << ", " << mazePos%(int(std::pow(MAZE_SIZE-1, 2))) << ")" << std::endl; 
 
-            intBuffer >> result[mazePos%(MAZE_SIZE-1)][mazePos/(MAZE_SIZE-1)][mazePos%(int(std::pow(MAZE_SIZE-1, 2)))];
+            intBuffer >> result[mazePos%MAZE_SIZE][(mazePos/MAZE_SIZE)%MAZE_SIZE][(mazePos/int(std::pow(MAZE_SIZE, 2)))%MAZE_SIZE];
             mazePos++;
         }
 	}else{
@@ -59,9 +59,11 @@ bool Pathfinder::importMaze(std::string file_name) {
     }
 
     // copy to actual maze
-    for (int i = 0; i < 125; i++){
-        for(int i = 0; i < 125; i++){
-            maze[i%(MAZE_SIZE-1)][i/(MAZE_SIZE-1)][i%(int(std::pow(MAZE_SIZE-1, 2)))] = result[i%(MAZE_SIZE-1)][i/(MAZE_SIZE-1)][i%(int(std::pow(MAZE_SIZE-1, 2)))];
+    for(int x = 0; x < MAZE_SIZE; x++){
+        for(int y = 0; y < MAZE_SIZE; y++){
+            for(int z = 0; z < MAZE_SIZE; z++){
+                maze[x][y][z] = result[x][y][z];
+            }
         }
     }
     return true;
@@ -69,7 +71,7 @@ bool Pathfinder::importMaze(std::string file_name) {
 
 void Pathfinder::createRandomMaze() {
     for(int i = 0; i < 125; i++){
-        maze[i%(MAZE_SIZE-1)][i/(MAZE_SIZE-1)][i%(int(std::pow(MAZE_SIZE-1, 2)))] = std::rand()%2;
+        maze[i%MAZE_SIZE][(i/MAZE_SIZE)%MAZE_SIZE][(i/int(std::pow(MAZE_SIZE, 2)))%MAZE_SIZE] = std::rand()%2;
     }
     maze[0][0][0] = maze[1][1][1] = FREE;
 }
