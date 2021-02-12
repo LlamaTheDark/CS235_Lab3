@@ -27,14 +27,12 @@ std::string Pathfinder::toString() const {
 }
 
 bool Pathfinder::importMaze(std::string file_name) {
-    std::cout << "Hello Big BOI" << std::endl;
     int result[MAZE_SIZE][MAZE_SIZE][MAZE_SIZE];
     std::string buffer;
 	std::ifstream in(file_name);
 
     int mazePos = 0;
 	if(in.is_open()){
-        std::cout << "hELLO big boi" << std::endl;
         while(std::getline(in, buffer)){
             if(mazePos > 124) // if there are more than 125 entries
                 return false;
@@ -47,6 +45,7 @@ bool Pathfinder::importMaze(std::string file_name) {
             z = mazePos%(GRID_SIZE-1^2)
             */
                 std::cout << "now reading to position: (" << mazePos%MAZE_SIZE << ", " << (mazePos/MAZE_SIZE)%MAZE_SIZE << ", " << (mazePos/int(std::pow(MAZE_SIZE, 2)))%MAZE_SIZE << ")" << std::endl; 
+                std::cout << "\t which is: " << intBuffer;
                 result[mazePos%MAZE_SIZE][(mazePos/MAZE_SIZE)%MAZE_SIZE][(mazePos/int(std::pow(MAZE_SIZE, 2)))%MAZE_SIZE] = intBuffer;
                 mazePos++;
             }
