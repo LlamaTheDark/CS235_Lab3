@@ -39,7 +39,7 @@ bool Pathfinder::importMaze(std::string file_name) {
             if(mazePos > 124) // if there are more than 125 entries
                 return false;
             istringstream iss(buffer);
-            std::string intBuffer;
+            int intBuffer;
             while(iss >> intBuffer){
             /*
             x = mazePos%GRID_SIZE-1
