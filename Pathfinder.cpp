@@ -41,6 +41,9 @@ bool Pathfinder::importMaze(std::string file_name) {
             istringstream iss(buffer);
             int intBuffer;
             while(iss >> intBuffer){
+                if(intBuffer != OBSTACLE && intBuffer != FREE){
+                    return false;
+                }
             /*
             x = mazePos%GRID_SIZE-1
             y = mazePos/GRID_SIZE-1 (int version)
@@ -54,8 +57,7 @@ bool Pathfinder::importMaze(std::string file_name) {
             }
         }
 	}else{
-		std::cerr << "There was an error reading file, " << file_name << std::endl;
-        return false;
+        return false; // error reading file
     }
 
     if(result[0][0][0] != 1 || result[MAZE_SIZE-1][MAZE_SIZE-1][MAZE_SIZE-1] != 1){
