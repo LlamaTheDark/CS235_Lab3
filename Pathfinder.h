@@ -6,6 +6,10 @@
 #include "PathfinderInterface.h"
 using namespace std;
 
+const int OBSTACLE = 0;
+const int FREE = 1;
+const int ON_PATH = 2;
+
 class Pathfinder : public PathfinderInterface{
 private:
 	static const int MAZE_SIZE = 5;

@@ -70,7 +70,11 @@ void Pathfinder::createRandomMaze() {
 }
 
 std::vector<std::string> Pathfinder::solveMaze() {
-
+    if(findPath(0, 0, 0)){
+        return solutionPath;
+    }else{
+        return *(new std::vector<std::string>());
+    }
 }
 
 bool Pathfinder::findPath(int x, int y, int z){
