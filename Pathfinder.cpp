@@ -56,6 +56,7 @@ bool Pathfinder::importMaze(std::string file_name) {
                 mazePos++;
             }
         }
+        in.close();
 	}else{
         return false; // error reading file
     }
