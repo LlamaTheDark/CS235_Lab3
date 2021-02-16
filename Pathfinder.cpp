@@ -50,6 +50,12 @@ bool Pathfinder::importMaze(std::string file_name) { // WORKING
             while(iss >> buffer){
                 if(count > MAZE_SIZE) return false;
                 if(index > max_index) return false;
+                std::string::const_iterator it = buffer.begin();
+                while(it != buffer.end() && std::isdigit(*it)) it++;
+                if(it!=buffer.end()){
+                    return false;
+                }
+
                 result[X(index, MAZE_SIZE)][Y(index, MAZE_SIZE)][Z(index, MAZE_SIZE)] = std::stoi(buffer);
                 count++;
                 index++;
