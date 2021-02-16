@@ -81,7 +81,7 @@ void Pathfinder::createRandomMaze() { // WORKING
 }
 
 std::vector<std::string> Pathfinder::solveMaze() {
-    if(!isValidMaze() || !findPath(0, 0, 0)){
+    if(!isValidMaze() || !findPath(0, 0, 0, maze)){
         // std::vector<std::string> noSolution;
         // noSolution.push_back("no solution found.");
         // return noSolution;
@@ -92,7 +92,7 @@ std::vector<std::string> Pathfinder::solveMaze() {
     }
 }
 
-bool Pathfinder::findPath(int x, int y, int z){
+bool Pathfinder::findPath(int x, int y, int z, int m[MAZE_SIZE][MAZE_SIZE][MAZE_SIZE]){
     // std::cout << "testing coordinate: (" << x << ", " << y << ", " << z << ")" << std::endl;
     // std::cout << "\tvalue at coord: " << maze[x][y][z] << std::endl;
 
@@ -108,26 +108,26 @@ bool Pathfinder::findPath(int x, int y, int z){
         solutionPath.pop_back();
         return false;
     }
-    if(maze[x][y][z] == ON_PATH || maze[x][y][z] == OBSTACLE){
+    if(m[x][y][z] == ON_PATH || m[x][y][z] == OBSTACLE){
         solutionPath.pop_back();
         return false;
     }
 
-    maze[x][y][z] = ON_PATH;
+    m[x][y][z] = ON_PATH;
 
     if(x == MAZE_SIZE-1 && y == MAZE_SIZE-1 && z == MAZE_SIZE-1){
         solutionPath.pop_back();
         return true;
     }
 
-    if(findPath(x+1, y, z) || findPath(x-1, y, z) || findPath(x, y+1, z) || findPath(x, y-1, z) || findPath(x, y, z+1) || findPath(x, y, z-1)){
+    if(findPath(x+1, y, z, m) || findPath(x-1, y, z, m) || findPath(x, y+1, z, m) || findPath(x, y-1, z, m) || findPath(x, y, z+1, m) || findPath(x, y, z-1, m)){
         return true; // meaning that we have not hit a dead end.
     }else{
         solutionPath.pop_back();
         return false;
     }
 
-    maze[x][y][z] = ON_PATH; 
+    m[x][y][z] = ON_PATH; 
 }
 
 std::string Pathfinder::formatCoords(int x, int y, int z){
