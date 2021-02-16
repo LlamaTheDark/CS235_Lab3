@@ -112,13 +112,12 @@ bool Pathfinder::findPath(int x, int y, int z){
         solutionPath.pop_back();
         return false;
     }
-
-    maze[x][y][z] = ON_PATH;
-
     if(x == MAZE_SIZE-1 && y == MAZE_SIZE-1 && z == MAZE_SIZE-1){
         solutionPath.pop_back();
         return true;
     }
+
+    maze[x][y][z] = ON_PATH;
 
     if(findPath(x+1, y, z) || findPath(x-1, y, z) || findPath(x, y+1, z) || findPath(x, y-1, z) || findPath(x, y, z+1) || findPath(x, y, z-1)){
         return true; // meaning that we have not hit a dead end.
