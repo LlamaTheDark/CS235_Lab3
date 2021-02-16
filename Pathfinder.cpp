@@ -97,6 +97,14 @@ std::vector<std::string> Pathfinder::solveMaze() {
         // std::cout << "found a path!" << std::endl;
         return solutionPath;
     }
+    for(int i = 0; i < std::pow(MAZE_SIZE, 3); i++){
+        // maze[i%MAZE_SIZE][(i/MAZE_SIZE)%MAZE_SIZE][(i/int(std::pow(MAZE_SIZE, 2)))%MAZE_SIZE] = FREE;
+        if(maze[X(i, MAZE_SIZE)][Y(i, MAZE_SIZE)][Z(i, MAZE_SIZE)] == ON_PATH){
+            maze[X(i, MAZE_SIZE)][Y(i, MAZE_SIZE)][Z(i, MAZE_SIZE)] == FREE;
+        }
+    
+    }
+    
 }
 
 bool Pathfinder::findPath(int x, int y, int z){
