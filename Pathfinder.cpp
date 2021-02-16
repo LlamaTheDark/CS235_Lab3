@@ -93,6 +93,8 @@ std::vector<std::string> Pathfinder::solveMaze() {
         m[X(i, MAZE_SIZE)][Y(i, MAZE_SIZE)][Z(i, MAZE_SIZE)] = maze[X(i, MAZE_SIZE)][Y(i, MAZE_SIZE)][Z(i, MAZE_SIZE)];
     }
 
+    solutionPath = *(new std::vector<std::string>());
+
     if(!isValidMaze() || !findPath(0, 0, 0, m)){
         // std::vector<std::string> noSolution;
         // noSolution.push_back("no solution found.");
