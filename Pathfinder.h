@@ -97,6 +97,6 @@ public:
 	*/
 	virtual vector<string> solveMaze() override;
 	//-----------------------------------------------------------------------------------------
-    bool findPath(int x, int y, int z, int m[MAZE_SIZE][MAZE_SIZE][MAZE_SIZE]); // returns success of path finding. if false, there is no path.
+    bool findPath(int x, int y, int z); // returns success of path finding. if false, there is no path.
     bool isValidMaze();
 };
