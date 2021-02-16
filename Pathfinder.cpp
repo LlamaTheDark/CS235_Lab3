@@ -38,6 +38,7 @@ bool Pathfinder::importMaze(std::string file_name) { // WORKING
     int result[MAZE_SIZE][MAZE_SIZE][MAZE_SIZE];
     short int count; // counts number of inputs per line
     int index = 0; // refers to the index of the element being added
+    int max_index = std::pow(MAZE_SIZE, 3);
 
     std::string buffer;
 	std::ifstream in(file_name);
@@ -48,6 +49,7 @@ bool Pathfinder::importMaze(std::string file_name) { // WORKING
             count = 0;
             while(iss >> buffer){
                 if(count > MAZE_SIZE) return false;
+                if(index > max_index) return false;
                 result[X(index, MAZE_SIZE)][Y(index, MAZE_SIZE)][Z(index, MAZE_SIZE)] = std::stoi(buffer);
                 count++;
                 index++;
