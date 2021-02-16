@@ -102,11 +102,11 @@ std::vector<std::string> Pathfinder::solveMaze() {
         return *(new std::vector<std::string>());
     }else{
         // std::cout << "found a path!" << std::endl;
-        std::cout << "\tsolution path: " << std::endl;
-        for(int i = 0; i < solutionPath.size(); i++){
-            std::cout << solutionPath.at(i) << ": " << solutionPathNums.at(i) << std::endl;
-        }
-        std::cout << std::endl;
+        // std::cout << "\tsolution path: " << std::endl;
+        // for(int i = 0; i < solutionPath.size(); i++){
+        //     std::cout << solutionPath.at(i) << ": " << solutionPathNums.at(i) << std::endl;
+        // }
+        // std::cout << std::endl;
         return solutionPath;
     }
 
