@@ -18,6 +18,7 @@ private:
 	bool isEmpty = true;
 
     vector<string> solutionPath;
+    vector<int> solutionPathNums;
 
     string formatCoords(int x, int y, int z);
 

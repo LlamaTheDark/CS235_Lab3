@@ -110,6 +110,7 @@ bool Pathfinder::findPath(int x, int y, int z, int m[MAZE_SIZE][MAZE_SIZE][MAZE_
     // std::cout << "\tvalue at coord: " << m[x][y][z] << std::endl;
 
     solutionPath.push_back(formatCoords(x, y, z));
+    solutionPathNums.push_back(maze[x][y][z]);
 
     // std::cout << "\tcurrent solution path: ";
     // for(auto& e : solutionPath){
@@ -121,12 +122,14 @@ bool Pathfinder::findPath(int x, int y, int z, int m[MAZE_SIZE][MAZE_SIZE][MAZE_
         // std::cout << "\tBOUNDS TEST FAILED" << std::endl;
 
         solutionPath.pop_back();
+        solutionPathNums.pop_back();
         return false;
     }
     if(m[x][y][z] == ON_PATH || m[x][y][z] == OBSTACLE){
         // std::cout << "\tPATH/OBST TEST FAILED" << std::endl;
 
         solutionPath.pop_back();
+        solutionPathNums.pop_back();
         return false;
     }
 
@@ -142,6 +145,7 @@ bool Pathfinder::findPath(int x, int y, int z, int m[MAZE_SIZE][MAZE_SIZE][MAZE_
         return true; // meaning that we have not hit a dead end.
     }else{
         solutionPath.pop_back();
+        solutionPathNums.pop_back();
         return false;
     }
 }
