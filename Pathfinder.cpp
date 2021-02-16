@@ -112,10 +112,10 @@ bool Pathfinder::findPath(int x, int y, int z, int m[MAZE_SIZE][MAZE_SIZE][MAZE_
     solutionPath.push_back(formatCoords(x, y, z));
 
     // std::cout << "\tcurrent solution path: ";
-    for(auto& e : solutionPath){
-        std::cout << e << " ";
-    }
-    std::cout << std::endl;
+    // for(auto& e : solutionPath){
+    //     std::cout << e << " ";
+    // }
+    // std::cout << std::endl;
 
     if(x >= MAZE_SIZE || y >= MAZE_SIZE || z >= MAZE_SIZE || x < 0 || y < 0 || z < 0) {
         // std::cout << "\tBOUNDS TEST FAILED" << std::endl;
