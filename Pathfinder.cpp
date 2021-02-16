@@ -122,7 +122,6 @@ bool Pathfinder::findPath(int x, int y, int z){
     maze[x][y][z] = ON_PATH;
 
     if(x == MAZE_SIZE-1 && y == MAZE_SIZE-1 && z == MAZE_SIZE-1){
-        solutionPath.pop_back();
         return true;
     }
 
