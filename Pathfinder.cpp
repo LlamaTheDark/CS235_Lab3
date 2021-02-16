@@ -27,7 +27,7 @@ std::string Pathfinder::toString() const { // WORKING
 			}
 			if(z != MAZE_SIZE-1 || y != MAZE_SIZE-1) ss << std::endl; // this and the other if statment are so that there are no trailing newlines
 		}
-		if(z != MAZE_SIZE-1) ss << std::endl;
+		ss << std::endl;
 	}
 	return ss.str();
 }
