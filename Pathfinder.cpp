@@ -90,7 +90,7 @@ void Pathfinder::createRandomMaze() { // WORKING
 std::vector<std::string> Pathfinder::solveMaze() {
     int m[MAZE_SIZE][MAZE_SIZE][MAZE_SIZE];
     for(int i = 0; i < std::pow(MAZE_SIZE, 3); i++){
-        m[X(i, MAZE_SIZE)][Y(i, MAZE_SIZE)][Z(i, MAZE_SIZE)] = m[X(i, MAZE_SIZE)][Y(i, MAZE_SIZE)][Z(i, MAZE_SIZE)];
+        m[X(i, MAZE_SIZE)][Y(i, MAZE_SIZE)][Z(i, MAZE_SIZE)] = maze[X(i, MAZE_SIZE)][Y(i, MAZE_SIZE)][Z(i, MAZE_SIZE)];
     }
 
     if(!isValidMaze() || !findPath(0, 0, 0, m)){
@@ -107,21 +107,25 @@ std::vector<std::string> Pathfinder::solveMaze() {
 
 bool Pathfinder::findPath(int x, int y, int z, int m[MAZE_SIZE][MAZE_SIZE][MAZE_SIZE]){
     // std::cout << "testing coordinate: (" << x << ", " << y << ", " << z << ")" << std::endl;
-    // std::cout << "\tvalue at coord: " << maze[x][y][z] << std::endl;
+    // std::cout << "\tvalue at coord: " << m[x][y][z] << std::endl;
 
     solutionPath.push_back(formatCoords(x, y, z));
 
     // std::cout << "\tcurrent solution path: ";
-    // for(auto& e : solutionPath){
-    //     std::cout << e << " ";
-    // }
-    // std::cout << std::endl;
+    for(auto& e : solutionPath){
+        std::cout << e << " ";
+    }
+    std::cout << std::endl;
 
     if(x >= MAZE_SIZE || y >= MAZE_SIZE || z >= MAZE_SIZE || x < 0 || y < 0 || z < 0) {
+        // std::cout << "\tBOUNDS TEST FAILED" << std::endl;
+
         solutionPath.pop_back();
         return false;
     }
     if(m[x][y][z] == ON_PATH || m[x][y][z] == OBSTACLE){
+        // std::cout << "\tPATH/OBST TEST FAILED" << std::endl;
+
         solutionPath.pop_back();
         return false;
     }
@@ -129,6 +133,8 @@ bool Pathfinder::findPath(int x, int y, int z, int m[MAZE_SIZE][MAZE_SIZE][MAZE_
     m[x][y][z] = ON_PATH;
 
     if(x == MAZE_SIZE-1 && y == MAZE_SIZE-1 && z == MAZE_SIZE-1){
+        // std::cout << "\tREACHED END OF MAZE" << std::endl;
+
         return true;
     }
 
