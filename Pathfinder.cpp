@@ -10,6 +10,8 @@
 #define Z(i, m) ((i/int(std::pow(m, 2)))%m)
 
 Pathfinder::Pathfinder(){ // WORKING
+    srand( time(NULL) );
+
     for(int i = 0; i < std::pow(MAZE_SIZE, 3); i++){
         // maze[i%MAZE_SIZE][(i/MAZE_SIZE)%MAZE_SIZE][(i/int(std::pow(MAZE_SIZE, 2)))%MAZE_SIZE] = FREE;
         maze[X(i, MAZE_SIZE)][Y(i, MAZE_SIZE)][Z(i, MAZE_SIZE)] = FREE;
@@ -79,11 +81,10 @@ bool Pathfinder::importMaze(std::string file_name) { // WORKING
 }
 
 void Pathfinder::createRandomMaze() { // WORKING
-    srand( time(NULL) );
     for(int i = 0; i < 125; i++){
         maze[i%MAZE_SIZE][(i/MAZE_SIZE)%MAZE_SIZE][(i/int(std::pow(MAZE_SIZE, 2)))%MAZE_SIZE] = std::rand()%2;
     }
-    maze[0][0][0] = maze[1][1][1] = FREE;
+    maze[0][0][0] = maze[MAZE_SIZE][MAZE_SIZE][MAZE_SIZE] = FREE;
 }
 
 std::vector<std::string> Pathfinder::solveMaze() {
@@ -131,8 +132,6 @@ bool Pathfinder::findPath(int x, int y, int z){
         solutionPath.pop_back();
         return false;
     }
-
-    maze[x][y][z] = ON_PATH; 
 }
 
 std::string Pathfinder::formatCoords(int x, int y, int z){
